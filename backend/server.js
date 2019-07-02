@@ -5,6 +5,8 @@ import mongoose from 'mongoose';
 
 import Issue from './models/Issue';
 
+import { accessString } from './access/access';
+
 const app = express();
 // app.get('/', (req, res) => { res.send('Hello World') });
 //Sends 'Hello world as a response for testing to see if the server request works
@@ -16,7 +18,7 @@ app.use(cors());//Middleware for using resources located outside the server
 // app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json);
 
-// mongoose.connect('');
+mongoose.connect(`${accessString}`, {useNewUrlParser: true});
 
 // const connection = mongoose.connection;
 
