@@ -5,38 +5,37 @@ import mongoose from 'mongoose';
 
 import Issue from './models/Issue';
 
-import { accessString } from './access/access';
+import { dbAccessString, localAccessString } from './access/access';
 
 const app = express();
-// app.get('/', (req, res) => { res.send('Hello World') });
-//Sends 'Hello world as a response for testing to see if the server request works
-
 const router = express.Router();
 
 app.use(cors());//Middleware for using resources located outside the server
-
 // app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json);
+app.use(bodyParser.json());
 
-mongoose.connect(`${accessString}`, {useNewUrlParser: true});
+mongoose.connect(`${localAccessString}`, {useNewUrlParser: true});
 
-// const connection = mongoose.connection;
+const connection = mongoose.connection;
 
-// connection.once('open', () => {
-//     console.log('MongoDB database connection established successfully!')
-// })
+connection.once('open', () => {
+    console.log('MongoDB database connection established successfully!')
+})
+
+app.get('/', (req, res) => { 
+    res.send('Hello world!')
+});
+
 //Event listener for the database open event
 
 router.route('/issues').get((req, res) => {
     Issue.find((err, issues) => {
-        if (err) {
+        if (err)
             console.log(err);
-        }
-        else {
-            res.json();
-        }
-    })
-});//HTTP GET for a list of issues in JSON format
+        else
+            res.json(issues);
+    });
+})//HTTP GET for a list of issues in JSON format
 
 router.route('/issues/:id').get((req, res) => {
     Issue.findById(req.params.id, (err, issue) => {
