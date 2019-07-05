@@ -55,8 +55,7 @@ router.route('/issues/add').post((req, res) => {
         }).catch(err => {
             res.status(400).send('Failed to create a new record');
         });
-
-})
+});
 
 router.route('/issues/update/:id').post((req, res) => {
     Issue.findById(req.params.id, (err, issue) => {
@@ -78,7 +77,7 @@ router.route('/issues/update/:id').post((req, res) => {
     });
 });
 
-router.route('/issues/delete.:id').get((req, res) => {
+router.route('/issues/delete/:id').get((req, res) => {
     Issue.findByIdAndRemove({_id: req.params.id}, (err, issue) => {
         if (err) {
             res.json(err);
