@@ -1,13 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-/* Importing Angular Material for use in project */
-import { MatToolbarModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+/* Importing Angular Material for use in project */
+import { MatToolbarModule, MatFormFieldModule, MatInputModule, MatOptionModule, MatSelectModule, MatIconModule, MatButtonModule, MatCardModule, MatTableModule, MatDividerModule, MatSnackBarModule } from '@angular/material';
+
+
+/* Importing Components */
 import { AppComponent } from './app.component';
 import { CreateComponent } from './components/create/create.component';
 import { EditComponent } from './components/edit/edit.component';
 import { ListComponent } from './components/list/list.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 /* Importing Router Module and Routes */
 import { RouterModule } from '@angular/router';
@@ -28,6 +31,16 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     HttpClientModule,
     MatToolbarModule,
+    MatFormFieldModule, 
+    MatInputModule, 
+    MatOptionModule, 
+    MatSelectModule, 
+    MatIconModule, 
+    MatButtonModule, 
+    MatCardModule, 
+    MatTableModule, 
+    MatDividerModule, 
+    MatSnackBarModule,
     RouterModule.forRoot(routes)
   ],
   providers: [],
