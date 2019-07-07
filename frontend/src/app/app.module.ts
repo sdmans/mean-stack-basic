@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 /* Importing Angular Material for use in project */
 import { MatToolbarModule, MatFormFieldModule, MatInputModule, MatOptionModule, MatSelectModule, MatIconModule, MatButtonModule, MatCardModule, MatTableModule, MatDividerModule, MatSnackBarModule } from '@angular/material';
@@ -30,6 +32,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    RouterModule.forRoot(routes),
+    ReactiveFormsModule,
     MatToolbarModule,
     MatFormFieldModule, 
     MatInputModule, 
@@ -40,8 +44,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatCardModule, 
     MatTableModule, 
     MatDividerModule, 
-    MatSnackBarModule,
-    RouterModule.forRoot(routes)
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
