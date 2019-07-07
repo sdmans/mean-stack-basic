@@ -29,7 +29,20 @@ updateForm: FormGroup;
     }
 
   ngOnInit() {
-    
+    this.route.params
+      .subscribe(params => {
+        this.id = params.id;
+        this.issueService.getIssueById(this.id)
+          .subscribe(res => {
+            this.issue = res;//Res it the response from getIssueById which returns the retrieved individual object
+            this.updateForm.get('title').setValue(this.issue.title);
+            this.updateForm.get('responsible').setValue(this.issue.responsible);
+            this.updateForm.get('description').setValue(this.issue.description);
+            this.updateForm.get('severity').setValue(this.issue.severity);
+            this.updateForm.get('status').setValue(this.issue.status);
+          })
+
+    })
   }
 
   createForm() {
@@ -40,6 +53,15 @@ updateForm: FormGroup;
       severity: '',
       status:''
     });//Status not included because its default is set to open
+  }
+
+  updateIssue(title, responsible, description, severity, status) {
+    this.issueService.updateIssue(this.id, title, responsible, description, severity, status)
+      .subscribe(() => {
+        this.snackBar.open('Issue updated successfully', 'OK', {
+          duration: 3000
+        });
+      });
   }
 
 }
